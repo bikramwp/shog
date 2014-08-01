@@ -37,7 +37,7 @@ module Shog
                       end
             parts << 'in'
             parts << format_time( match['time'], 250 )
-            parts << match['details'].white.bold
+            parts << match['details'].magenta
 
             parts.join(" ")
           end
