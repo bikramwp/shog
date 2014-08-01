@@ -13,15 +13,15 @@ module Shog
           # Highlight HTTP request methods
           match /Started\s+(?<method>PUT|PATCH|GET|POST|DELETE)\s+(?<path>"[^"]*")[^\d\.]+(?<ip>[\d\.]+)(?<time>.*)/ do |msg,match|
             # http://refiddle.com/ge6
-            "#{match["method"].ljust 6} ".green.bold + " #{match["path"]} ".white.bold + " for " + "#{match["ip"]}".yellow + " #{match["time"]}".black
+            "#{match["method"].ljust 6} ".green.bold + " #{match["path"]} ".white.bold + " for " + "#{match["ip"]}".yellow + " #{match["time"]}".black.bold
           end
 
           # Dim detailed info about rendering views
           match /\s*Rendered\s+(?<view>[^\s]+)\s(within\s(?<layout>[^\s]+)\s)?\((?<time>.*)\)/ do |msg,match|
             # http://refiddle.com/18qr
-            parts = ["  Rendered #{ match["view"].bold }".black]
-            parts << "within ".black + match["layout"].black.bold if match['layout']
-            parts << format_time( match['time'].black, 50 )
+            parts = ["  Rendered #{ match["view"].bold }".black.bold]
+            parts << "within ".black.bold + match["layout"].black.bold if match['layout']
+            parts << format_time( match['time'].black.bold, 50 )
             parts.join " "
           end
 
@@ -37,7 +37,7 @@ module Shog
                       end
             parts << 'in'
             parts << format_time( match['time'], 250 )
-            parts << match['details'].black
+            parts << match['details'].black.bold
 
             parts.join(" ")
           end

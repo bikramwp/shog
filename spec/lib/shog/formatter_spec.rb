@@ -71,7 +71,7 @@ describe Shog::Formatter do
     end
 
     it "is yellow when above expected and has existing color" do
-      expect( formatter.format_time( "50ms".black, 30 ) ).to eq "50ms".yellow
+      expect( formatter.format_time( "50ms".black.bold, 30 ) ).to eq "50ms".yellow
     end
 
     it "is red when way above expected" do
